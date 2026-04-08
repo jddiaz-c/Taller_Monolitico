@@ -13,34 +13,19 @@
 
         <div class="menu-grid">
 
-            <a href="views/vehiculos.php" class="menu-card">
+            <a href="vehiculos.php" class="menu-card">
                 <h2>Vehículos</h2>
-                <p>Registrar y gestionar flota</p>
+                <p>Gestionar flota y estados</p>
             </a>
 
-            <a href="views/clientes.php" class="menu-card">
+            <a href="clientes.php" class="menu-card">
                 <h2>Clientes</h2>
                 <p>Registrar y consultar clientes</p>
             </a>
 
-            <a href="views/reservas.php" class="menu-card">
+            <a href="reservas.php" class="menu-card">
                 <h2>Reservas</h2>
-                <p>Nueva reserva de vehículo</p>
-            </a>
-
-            <a href="views/devoluciones.php" class="menu-card">
-                <h2>Devoluciones</h2>
-                <p>Registrar devolución</p>
-            </a>
-
-            <a href="views/disponibilidad.php" class="menu-card">
-                <h2>Disponibilidad</h2>
-                <p>Ver vehículos disponibles</p>
-            </a>
-
-            <a href="views/historial.php" class="menu-card">
-                <h2>Historial</h2>
-                <p>Consultar alquileres</p>
+                <p>Crear y gestionar reservas</p>
             </a>
 
         </div>

@@ -1,2 +1,2 @@
 <?php
-header("Location: views/lista_estudiantes.php");
+header("Location: views/menu.php");
