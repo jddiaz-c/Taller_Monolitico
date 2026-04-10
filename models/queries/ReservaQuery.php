@@ -82,4 +82,62 @@ class ReservaQuery
         $connDb->close();
         return $row['total'] > 0;
     }
+
+    static function getActivas()
+    {
+        $sql = "SELECT r.*, c.nombre AS cliente_nombre,
+                    v.marca, v.modelo
+                FROM reservas r
+                JOIN clientes c ON r.cliente_id = c.id
+                JOIN vehiculos v ON r.vehiculo_id = v.id
+                WHERE r.estado = 'activa'";
+        $connDb = new ConnectionDB();
+        $result = $connDb->execute($sql);
+        $list   = [];
+        while ($row = $result->fetch_assoc()) {
+            $reserva = new Reserva(
+                $row['id'], $row['cliente_id'], $row['vehiculo_id'],
+                $row['fecha_inicio'], $row['fecha_fin'], $row['estado']
+            );
+            $reserva->set('cliente_nombre', $row['cliente_nombre']);
+            $reserva->set('vehiculo_info',  $row['marca'] . ' ' . $row['modelo']);
+            $list[] = $reserva;
+        }
+        $connDb->close();
+        return $list;
+    }
+
+    static function getHistorial($vehiculo_id = null, $cliente_id = null)
+    {
+        $sql = "SELECT r.*, c.nombre AS cliente_nombre,
+                v.marca, v.modelo
+                FROM reservas r
+                JOIN clientes c ON r.cliente_id = c.id
+                JOIN vehiculos v ON r.vehiculo_id = v.id
+                WHERE r.estado != 'activa'";
+
+        if (!empty($vehiculo_id)) {
+            $sql .= " AND r.vehiculo_id = $vehiculo_id";
+        }
+        if (!empty($cliente_id)) {
+            $sql .= " AND r.cliente_id = $cliente_id";
+        }
+
+        $sql .= " ORDER BY r.updated_at DESC";
+
+        $connDb = new ConnectionDB();
+        $result = $connDb->execute($sql);
+        $list   = [];
+        while ($row = $result->fetch_assoc()) {
+            $reserva = new Reserva(
+                $row['id'], $row['cliente_id'], $row['vehiculo_id'],
+                $row['fecha_inicio'], $row['fecha_fin'], $row['estado']
+            );
+            $reserva->set('cliente_nombre', $row['cliente_nombre']);
+            $reserva->set('vehiculo_info',  $row['marca'] . ' ' . $row['modelo']);
+            $list[] = $reserva;
+        }
+        $connDb->close();
+        return $list;
+    }
 }

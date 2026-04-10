@@ -50,4 +50,13 @@ class ReservaController
 
         return $resultado;
     }
+    public function getActivas()
+    {
+        return ReservaQuery::getActivas();
+    }
+
+    public function getHistorial($vehiculo_id = null, $cliente_id = null)
+    {
+        return ReservaQuery::getHistorial($vehiculo_id, $cliente_id);
+    }
 }

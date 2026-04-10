@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Gestor de Alquiler de Vehículos</title>
-    <link rel="stylesheet" href="public/style.css">
+    <link rel="stylesheet" href="../public/style.css">
 </head>
 <body>
 
@@ -25,7 +25,12 @@
 
             <a href="reservas.php" class="menu-card">
                 <h2>Reservas</h2>
-                <p>Crear y gestionar reservas</p>
+                <p>Crear y gestionar reservas activas</p>
+            </a>
+
+            <a href="historial.php" class="menu-card">
+                <h2>Historial</h2>
+                <p>Consultar alquileres por vehículo o cliente</p>
             </a>
 
         </div>

@@ -1,3 +1,17 @@
+<?php
+require __DIR__ . '/../models/config/model_base.php';
+require __DIR__ . '/../models/entities/Cliente.php';
+require __DIR__ . '/../models/config/connection_db.php';
+require __DIR__ . '/../models/queries/ClienteQuery.php';
+require __DIR__ . '/../controllers/ClienteController.php';
+
+use app\controllers\ClienteController;
+
+$controller = new ClienteController();
+$lista      = $controller->getLista();
+
+$mensaje = $_GET['msg'] ?? null;
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -14,8 +28,16 @@
             <h1>Clientes</h1>
         </div>
 
+        <?php if ($mensaje === 'creado'): ?>
+            <p class="msg-exito">Cliente registrado correctamente.</p>
+        <?php elseif ($mensaje === 'eliminado'): ?>
+            <p class="msg-exito">Cliente eliminado correctamente.</p>
+        <?php elseif ($mensaje === 'error_reservas'): ?>
+        <p class="msg-error">No se puede eliminar: el cliente tiene reservas activas.</p>
+        <?php endif; ?>
+
         <div class="acciones">
-            <a href="clientes/crear.php" class="btn">Registrar cliente</a>
+            <a href="crear_cliente.php" class="btn">Registrar cliente</a>
         </div>
 
         <table class="tabla">
@@ -23,29 +45,23 @@
                 <tr>
                     <th>ID</th>
                     <th>Nombre</th>
-                    <th>Documento</th>
                     <th>Teléfono</th>
+                    <th>Correo</th>
                     <th>Licencia</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                <?php
-                // Aquí irá el query que trae los clientes de la BD
-                $clientes = [
-                    ['id' => 1, 'nombre' => 'Carlos Pérez', 'documento' => '1234567', 'telefono' => '3001234567', 'licencia' => 'B1'],
-                    ['id' => 2, 'nombre' => 'Ana Gómez',   'documento' => '7654321', 'telefono' => '3109876543', 'licencia' => 'B2'],
-                ];
-
-                foreach ($clientes as $c): ?>
+                <?php foreach ($lista as $c): ?>
                 <tr>
-                    <td><?= $c['id'] ?></td>
-                    <td><?= $c['nombre'] ?></td>
-                    <td><?= $c['documento'] ?></td>
-                    <td><?= $c['telefono'] ?></td>
-                    <td><?= $c['licencia'] ?></td>
-                    <td>
-                        <a href="clientes/detalle.php?id=<?= $c['id'] ?>">Ver detalle</a>
+                    <td><?= $c->get('id') ?></td>
+                    <td><?= $c->get('nombre') ?></td>
+                    <td><?= $c->get('telefono') ?></td>
+                    <td><?= $c->get('correo') ?></td>
+                    <td><?= $c->get('numero_licencia') ?></td>
+                    <td class="td-acciones">
+                        <a href="eliminar_cliente.php?id=<?= $c->get('id') ?>"
+                           onclick="return confirm('¿Eliminar este cliente?')">Eliminar</a>
                     </td>
                 </tr>
                 <?php endforeach; ?>

@@ -8,6 +8,7 @@ require __DIR__ . '/../controllers/VehiculoController.php';
 use app\controllers\VehiculoController;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $_POST['estado'] = 'disponible';
     $controller = new VehiculoController();
     $controller->registrar($_POST);
     header('Location: vehiculos.php?msg=creado');
@@ -42,12 +43,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </label>
             <label>Categoría
                 <input type="text" name="categoria">
-            </label>
-            <label>Estado
-                <select name="estado">
-                    <option value="disponible">Disponible</option>
-                    <option value="mantenimiento">Mantenimiento</option>
-                </select>
             </label>
             <button type="submit" class="btn">Registrar</button>
         </form>
