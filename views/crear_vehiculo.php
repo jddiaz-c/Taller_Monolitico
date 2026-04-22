@@ -20,33 +20,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Registrar Vehículo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../public/style.css">
 </head>
-<body>
+<body class="inner-page">
 
-    <div class="page-container">
+    <div class="app-layout">
 
-        <div class="page-header">
-            <a href="vehiculos.php" class="btn-volver">Volver</a>
-            <h1>Registrar Vehículo</h1>
-        </div>
+        <?php require __DIR__ . '/layout.php'; ?>
 
-        <form action="crear_vehiculo.php" method="POST" class="formulario">
-            <label>Marca
-                <input type="text" name="marca" required>
-            </label>
-            <label>Modelo
-                <input type="text" name="modelo" required>
-            </label>
-            <label>Año
-                <input type="number" name="anio" min="1990" max="2030" required>
-            </label>
-            <label>Categoría
-                <input type="text" name="categoria">
-            </label>
-            <button type="submit" class="btn">Registrar</button>
-        </form>
+        <main class="content">
 
+            <div class="content-header">
+                <h1 class="content-title">Registrar Vehículo</h1>
+            </div>
+
+            <form action="crear_vehiculo.php" method="POST" class="formulario">
+                <label>Marca
+                    <input type="text" name="marca" required>
+                </label>
+                <label>Modelo
+                    <input type="text" name="modelo" required>
+                </label>
+                <label>Año
+                    <input type="number" name="anio" min="1990" max="2030" required>
+                </label>
+                <label>Categoría
+                    <input type="text" name="categoria">
+                </label>
+                <div class="form-actions">
+                    <button type="submit" class="btn">Registrar</button>
+                    <a href="vehiculos.php" class="btn-cancelar">Cancelar</a>
+                </div>
+            </form>
+
+        </main>
     </div>
 
 </body>
