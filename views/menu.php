@@ -17,7 +17,6 @@
                 Alquiler
                 <em>de Vehículos</em>
             </h1>
-            <p class="split-year">&copy; <?= date('Y') ?></p>
         </div>
 
         <div class="split-right">
