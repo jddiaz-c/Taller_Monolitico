@@ -8,8 +8,8 @@ require __DIR__ . '/../controllers/VehiculoController.php';
 use app\controllers\VehiculoController;
 
 $controller = new VehiculoController();
-$lista      = $controller->getLista();
-$mensaje    = $_GET['msg'] ?? null;
+$lista = $controller->getLista();
+$mensaje = $_GET['msg'] ?? null;
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -21,13 +21,10 @@ $mensaje    = $_GET['msg'] ?? null;
     <link rel="stylesheet" href="../public/style.css">
 </head>
 <body class="inner-page">
-
     <div class="app-layout">
-
         <?php require __DIR__ . '/layout.php'; ?>
 
         <main class="content">
-
             <div class="content-header">
                 <h1 class="content-title">Vehículos</h1>
                 <a href="crear_vehiculo.php" class="btn">+ Registrar</a>
@@ -50,7 +47,7 @@ $mensaje    = $_GET['msg'] ?? null;
                         <th>Año</th>
                         <th>Categoría</th>
                         <th>Estado</th>
-                        <th></th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>

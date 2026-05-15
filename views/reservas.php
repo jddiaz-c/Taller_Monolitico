@@ -37,6 +37,8 @@ $mensaje = $_GET['msg'] ?? null;
 <head>
     <meta charset="UTF-8">
     <title>Reservas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../public/style.css">
 </head>
 
@@ -45,7 +47,6 @@ $mensaje = $_GET['msg'] ?? null;
         <?php require __DIR__ . '/layout.php'; ?>
         <main class="content">
             <div class="page-header">
-                <a href="../index.php" class="btn-volver">Volver al menu</a>
                 <h1>Reservas</h1>
             </div>
 
@@ -62,7 +63,7 @@ $mensaje = $_GET['msg'] ?? null;
                     <select name="vehiculo_id" required>
                         <option value="">-- Seleccionar --</option>
                         <?php foreach ($vehiculos_disponibles as $v): ?>
-                            <option value="<?= $v->get('id') ?>">
+                            <option value="<?= $v->get('id')?>">
                                 <?= $v->get('marca') ?>     <?= $v->get('modelo') ?> (<?= $v->get('anio') ?>)
                             </option>
                         <?php endforeach; ?>
@@ -73,7 +74,7 @@ $mensaje = $_GET['msg'] ?? null;
                     <select name="cliente_id" required>
                         <option value="">-- Seleccionar --</option>
                         <?php foreach ($lista_clientes as $c): ?>
-                            <option value="<?= $c->get('id') ?>">
+                            <option value="<?= $c->get('id')?>">
                                 <?= $c->get('nombre') ?> — <?= $c->get('numero_licencia') ?>
                             </option>
                         <?php endforeach; ?>
@@ -106,9 +107,9 @@ $mensaje = $_GET['msg'] ?? null;
                 <tbody>
                     <?php foreach ($lista_reservas as $r): ?>
                         <tr>
-                            <td><?= $r->get('id') ?></td>
-                            <td><?= $r->get('cliente_nombre') ?></td>
-                            <td><?= $r->get('vehiculo_info') ?></td>
+                            <td><?= str_pad($r->get('id'), 3, '0', STR_PAD_LEFT) ?></td>
+                            <td class="td-primary"><?= $r->get('cliente_nombre') ?></td>
+                            <td class="td-primary"><?= $r->get('vehiculo_info') ?></td>
                             <td><?= $r->get('fecha_inicio') ?></td>
                             <td><?= $r->get('fecha_fin') ?></td>
                             <td class="td-acciones">

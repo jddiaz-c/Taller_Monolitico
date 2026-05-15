@@ -33,6 +33,8 @@ $historial = $reservaController->getHistorial($filtro_vehiculo, $filtro_cliente)
 <head>
     <meta charset="UTF-8">
     <title>Historial</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../public/style.css">
 </head>
 
@@ -41,7 +43,6 @@ $historial = $reservaController->getHistorial($filtro_vehiculo, $filtro_cliente)
         <?php require __DIR__ . '/layout.php'; ?>
         <main class="content">
             <div class="page-header">
-                <a href="../index.php" class="btn-volver">Volver al menu</a>
                 <h1>Historial de alquileres</h1>
             </div>
 
@@ -91,9 +92,9 @@ $historial = $reservaController->getHistorial($filtro_vehiculo, $filtro_cliente)
                     <?php else: ?>
                         <?php foreach ($historial as $r): ?>
                             <tr>
-                                <td><?= $r->get('id') ?></td>
-                                <td><?= $r->get('cliente_nombre') ?></td>
-                                <td><?= $r->get('vehiculo_info') ?></td>
+                                <td><?= str_pad($r->get('id'), 3, '0', STR_PAD_LEFT) ?></td>
+                                <td class="td-primary"><?= $r->get('cliente_nombre') ?></td>
+                                <td class="td-primary"><?= $r->get('vehiculo_info') ?></td>
                                 <td><?= $r->get('fecha_inicio') ?></td>
                                 <td><?= $r->get('fecha_fin') ?></td>
                                 <td>
