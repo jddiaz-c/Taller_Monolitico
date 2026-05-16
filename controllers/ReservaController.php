@@ -21,7 +21,7 @@ class ReservaController
             $datos['fecha_fin'],
             'activa'
         );
-        if (strtotime($fechaInicio) >= strtotime($fechaFin)) {
+        if (strtotime($datos['fecha_inicio']) > $datos['fecha_fin']) {
             return false;
         }
         $resultado = ReservaQuery::create($reserva);
