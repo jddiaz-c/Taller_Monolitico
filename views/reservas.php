@@ -24,8 +24,12 @@ $vehiculos_disponibles = $vehiculoController->getDisponibles();
 $lista_clientes = $clienteController->getLista();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $reservaController->registrar($_POST);
-    header('Location: reservas.php?msg=creada');
+    $resultado=$reservaController->registrar($_POST);
+    if (!$resultado){
+        header('Location: reservas.php?msg=error');
+    } else{
+        header('Location: reservas.php?msg=creada');
+    }
     exit;
 }
 
@@ -54,6 +58,8 @@ $mensaje = $_GET['msg'] ?? null;
                 <p class="msg-exito">Reserva creada correctamente.</p>
             <?php elseif ($mensaje === 'completada'): ?>
                 <p class="msg-exito">Reserva completada. Vehículo disponible nuevamente.</p>
+            <?php elseif ($mensaje === 'error'): ?>
+                <p class="msg-error">La fecha de inicio debe ser anterior a la fecha de fin.</p>
             <?php endif; ?>
 
             <h2>Nueva reserva</h2>

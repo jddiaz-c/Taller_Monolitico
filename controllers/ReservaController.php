@@ -21,8 +21,10 @@ class ReservaController
             $datos['fecha_fin'],
             'activa'
         );
+        if (strtotime($fechaInicio) >= strtotime($fechaFin)) {
+            return false;
+        }
         $resultado = ReservaQuery::create($reserva);
-
         if ($resultado) {
             VehiculoQuery::updateEstado($datos['vehiculo_id'], 'alquilado');
         }
